@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense Tracker Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Expense Tracker</h1>
+    <div style="display: flex; align-items: center; gap: 1rem;">
+     <span id="welcome-user">Welcome!</span>
+      <button id="logout-btn">Logout</button>
+      <label class="dark-mode-toggle">
+       <input type="checkbox" id="dark-mode" />
+       Dark Mode
+     </label>
+   </div>
+  </header>
+
+  <main class="tracker">
+    <section class="form-section">
+      <h2>Add Expense</h2>
+      <form id="expense-form">
+        <input type="date" name="date" required />
+        <input type="number" name="amount" placeholder="Amount" required />
+        <select name="category" required>
+          <option value="" disabled selected>Select Category</option>
+          <option value="Essentials">Essentials</option>
+          <option value="Mobility">Mobility</option>
+          <option value="Personal & Family">Personal & Family</option>
+          <option value="Lifestyle & Leisure">Lifestyle & Leisure</option>
+          <option value="Work & Education">Work & Education</option>
+          <option value="Financial & Giving">Financial & Giving</option>
+        </select>
+        <input type="text" name="description" placeholder="Description" />
+        <button type="submit">Add</button>
+      </form>
+    </section>
+
+    <section class="dashboard-section">
+      <h2>Dashboard Summary</h2>
+      <div id="summary-cards" class="card-grid">
+        <div class="card" id="total-amount">Total: ₱0</div>
+        <div class="card" id="total-count">Entries: 0</div>
+        <div class="card" id="daily-average">Daily Avg: ₱0</div>
+        <div class="card" id="monthly-average">Monthly Avg: ₱0</div>
+        <div class="card" id="yearly-average">Yearly Avg: ₱0</div>
+      </div>
+
+      <div style="margin-bottom: 1rem;">
+        <label for="category-filter">Filter by Category:</label>
+        <select id="category-filter">
+          <option value="all">All</option>
+        </select>
+      </div>
+
+      <h3>Filtered Expense View</h3>
+      <div style="margin-bottom: 1rem;">
+        <label for="filter-mode">Mode:</label>
+        <select id="filter-mode">
+          <option value="daily">Daily</option>
+          <option value="monthly">Monthly</option>
+        </select>
+        <input type="date" id="filter-date" style="display:inline;" />
+        <input type="month" id="filter-month" style="display:none;" />
+      </div>
+      <canvas id="filteredChart" width="400" height="200"></canvas>
+
+      <hr />
+
+      <h3>Expense Summary</h3>
+      <div style="margin-bottom: 1rem;">
+        <label for="chart-mode">Chart Mode:</label>
+        <select id="chart-mode">
+          <option value="daily">Daily</option>
+          <option value="monthly">Monthly</option>
+        </select>
+      </div>
+      <canvas id="expenseChart" width="400" height="200"></canvas>
+    </section>
+
+    <section class="table-section">
+      <h2>Expense Table</h2>
+      <table id="expense-table">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Category</th>
+            <th>Description</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
